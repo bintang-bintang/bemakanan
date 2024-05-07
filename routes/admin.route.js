@@ -6,5 +6,6 @@ const authenticateController = require(`../controller/auth.controller`)
 
 app.post("/",  adminController.register)
 app.post("/auth",  authenticateController.authenticate)
+app.post("/rize",  authenticateController.authorize)
 
 module.exports = app

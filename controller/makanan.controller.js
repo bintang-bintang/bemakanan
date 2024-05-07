@@ -9,17 +9,17 @@ const Op = require(`sequelize`).Op
 exports.findMakanan = async (request, response) => {
     try {
         /** define keyword to find data */
-        let keyword = request.params.key
+        let keyword = request.query.key
 
-        // if (!keyword || keyword.trim() === "") {
-        //     const showAll = await makananModel.findAll()
+        if (!keyword || keyword.trim() === "") {
+            const showAll = await makananModel.findAll()
 
-        //     return response.json({
-        //         success: true,
-        //         message: "Your keyword is empty but will showAll instead",
-        //         data: showAll
-        //     });
-        // }
+            return response.json({
+                success: true,
+                message: "Your keyword is empty but will showAll instead",
+                data: showAll
+            });
+        }
 
         /** call findAll() within where clause and operation
         * to find data based on keyword */

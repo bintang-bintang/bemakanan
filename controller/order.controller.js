@@ -72,14 +72,21 @@ exports.addOrder = async (request, response) => {
 exports.showHistory = async (request, response) => {
     try {
 
-        const coba = await listModel.findAll({
-            include: detailModel
-        });
+        const jumlahData = await listModel.findAll()
+        let a = []
+        for (let index = 1; index <= jumlahData.length; index++) {
+            let coba = await listModel.findOne({ where: { orderListID: index } })
+            let coba2 = await detailModel.findAll({ where: { orderListID: index } })
+            a.push(coba)
+            a.push(coba2)
+        }
+
+
 
 
         return response.json({
             success: true,
-            data: coba
+            data: a
         })
     } catch (error) {
         return response.json({
